@@ -1,8 +1,4 @@
-//merge sort implements a recursive splitting and merging function
-// split the array and continue to do so until sub-arrays are length 1
-// at that point merge the sub arrays back together in ascending order until you get back to the original array length
-
-let testArray = [100, 96, 85, 77, 68, 54, 42, 35, 21, 19, 9, 5, 4, 2];
+let testArray = [100, 96, 85, 77, 68, 54, 42, 35, 21, 19, 9, 5, 4, 2]; //sample array
 
 function mergeSort(array) {
   if (array.length <= 1) {
@@ -26,8 +22,8 @@ function merge(leftArr, rightArr) {
   let leftIndex = 0;
   let rightIndex = 0;
 
+  //while both arrays have values, order them in ascending fashion
   while (leftIndex < leftArr.length && rightIndex < rightArr.length) {
-    //while both arrays have values, order them in ascending fashion
     if (leftArr[leftIndex] <= rightArr[rightIndex]) {
       mergedArray.push(leftArr[leftIndex]);
       leftIndex++;

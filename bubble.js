@@ -1,11 +1,4 @@
-//testing creating a bubble sort algorithm
-
-//repeat until counter is 0
-//set counter to 0
-//look at array adjacent pairs, if the sceond value is smaller, swap the pairs and add 1 to the counter
-
-let testArray = [1, 6, 5, 4, 8, 6, 9, 13, 44, 2];
-let testArrayTwo = [100, 96, 85, 77, 68, 54, 42, 35, 21, 19, 9, 5, 4, 2];
+let testArray = [1, 6, 5, 4, 8, 6, 9, 13, 44, 2]; //sample array
 
 function bubble(array) {
   let counter = 1;
@@ -27,4 +20,3 @@ function bubble(array) {
 }
 
 console.log(bubble(testArray));
-console.log(bubble(testArrayTwo));

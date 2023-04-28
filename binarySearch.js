@@ -1,10 +1,4 @@
-//testing binary search
-//split sorted array in half - is value smaller or larger than midpoint?
-//if smaller: repeat search with new adjusted end of array (mid point - 1)
-//if larger: repeat search with new adjusted start of array (mid point + 1)
-//continue until array is length 0
-
-let testArray = [1, 2, 4, 5, 6, 7, 8, 9, 13, 44];
+let testArray = [1, 2, 4, 5, 6, 7, 8, 9, 13, 44]; //sample array
 
 function binarySearch(arr, target) {
   let low = 0;
