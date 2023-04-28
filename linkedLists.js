@@ -188,7 +188,7 @@ function Node(value) {
   };
 }
 
-//examples
+//examples functions
 
 const myList = LinkedList();
 console.log(myList.append("test"));
