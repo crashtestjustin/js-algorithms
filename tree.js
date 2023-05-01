@@ -46,6 +46,9 @@ class Tree {
     } else if (root.data < data) {
       root.right = this.delete(data, root.right);
     } else {
+      if (root.left === null && root.right === null) {
+        return null;
+      }
       if (root.left === null) {
         return root.right;
       } else if (root.right === null) {
@@ -60,11 +63,11 @@ class Tree {
 
 function minValue(root) {
   let minV = root.data;
-  while (root.right !== null) {
+  while (root.left !== null) {
     minV = root.left.data;
     root = root.left;
   }
-  return root;
+  return minV;
 }
 
 //TEST RUN
@@ -91,4 +94,5 @@ console.log(testTree.insert(7));
 prettyPrint(testTree.root);
 console.log(testTree.root);
 console.log(testTree.delete(7));
+// console.log(testTree.delete(6));
 prettyPrint(testTree.root);
