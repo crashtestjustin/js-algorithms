@@ -59,6 +59,19 @@ class Tree {
     }
     return root;
   }
+
+  find(data, root = this.root) {
+    if (root.data === null) {
+      return null;
+    }
+    if (root.data === data) {
+      return root;
+    } else if (root.data > data) {
+      return this.find(data, root.left);
+    } else if (root.data < data) {
+      return this.find(data, root.right);
+    }
+  }
 }
 
 function minValue(root) {
@@ -93,6 +106,8 @@ console.log(testTree.root);
 console.log(testTree.insert(7));
 prettyPrint(testTree.root);
 console.log(testTree.root);
-console.log(testTree.delete(7));
-// console.log(testTree.delete(6));
+// console.log(testTree.delete(7));
+console.log(testTree.delete(6));
 prettyPrint(testTree.root);
+console.log("run FIND");
+console.log(testTree.find(7));
