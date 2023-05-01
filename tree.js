@@ -130,12 +130,8 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 prettyPrint(testTree.root);
-console.log(testTree.root);
-console.log(testTree.insert(7));
+console.log(testTree.insert(7)); //4 2 6 1 3 5 8 7 9
 prettyPrint(testTree.root);
-console.log(testTree.root);
-// console.log(testTree.delete(7));
-console.log(testTree.delete(6));
+console.log(testTree.delete(6)); //4 2 7 1 3 4 8 9
 prettyPrint(testTree.root);
-console.log("run LEVLORDER");
-console.log(testTree.levelOrder());
+console.log(testTree.levelOrder(timesOneHundo)); //400 200 700 100 300 500 800 900
