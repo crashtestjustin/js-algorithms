@@ -36,11 +36,40 @@ class Tree {
     }
     return root;
   }
+
+  delete(data, root = this.root) {
+    if (root === null) {
+      return root;
+    }
+    if (root.data > data) {
+      root.left = this.delete(data, root.left);
+    } else if (root.data < data) {
+      root.right = this.delete(data, root.right);
+    } else {
+      if (root.left === null) {
+        return root.right;
+      } else if (root.right === null) {
+        return root.left;
+      }
+      root.data = minValue(root.right);
+      root.right = this.delete(root.data, root.right);
+    }
+    return root;
+  }
+}
+
+function minValue(root) {
+  let minV = root.data;
+  while (root.right !== null) {
+    minV = root.left.data;
+    root = root.left;
+  }
+  return root;
 }
 
 //TEST RUN
 
-let testArray = [2, 9, 8, 5, 4, 7, 4, 3, 6, 1];
+let testArray = [2, 9, 8, 5, 4, 4, 3, 6, 1];
 let testTree = new Tree(testArray);
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -58,7 +87,8 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 prettyPrint(testTree.root);
 console.log(testTree.root);
-console.log(testTree.insert(99));
-console.log('inserted"');
+console.log(testTree.insert(7));
 prettyPrint(testTree.root);
 console.log(testTree.root);
+console.log(testTree.delete(7));
+prettyPrint(testTree.root);
