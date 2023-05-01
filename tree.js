@@ -61,8 +61,8 @@ class Tree {
   }
 
   find(data, root = this.root) {
-    if (root.data === null) {
-      return null;
+    if (root === null) {
+      return undefined;
     }
     if (root.data === data) {
       return root;
@@ -71,6 +71,30 @@ class Tree {
     } else if (root.data < data) {
       return this.find(data, root.right);
     }
+  }
+
+  levelOrder(callbackFunc) {
+    let queue = [this.root];
+    let result = [];
+    if (!this.root) {
+      return undefined;
+    }
+    while (queue.length > 0) {
+      let currentNode = queue.shift();
+      if (currentNode.left) {
+        queue.push(currentNode.left);
+      }
+      if (currentNode.right) {
+        queue.push(currentNode.right);
+      }
+      if (callbackFunc) {
+        let callbackResult = callbackFunc(currentNode);
+        result.push(callbackResult);
+      } else {
+        result.push(currentNode.data);
+      }
+    }
+    return result;
   }
 }
 
@@ -81,6 +105,10 @@ function minValue(root) {
     root = root.left;
   }
   return minV;
+}
+
+function timesOneHundo(input) {
+  return input.data * 100;
 }
 
 //TEST RUN
@@ -109,5 +137,5 @@ console.log(testTree.root);
 // console.log(testTree.delete(7));
 console.log(testTree.delete(6));
 prettyPrint(testTree.root);
-console.log("run FIND");
-console.log(testTree.find(7));
+console.log("run LEVLORDER");
+console.log(testTree.levelOrder());
