@@ -96,6 +96,61 @@ class Tree {
     }
     return result;
   }
+
+  preorder(callbackFunc) {
+    //implemented iteratively
+    let stack = [this.root];
+    let result = [];
+    if (!this.root) {
+      return undefined;
+    }
+    while (stack.length > 0) {
+      let currentNode = stack.pop();
+      if (currentNode.right) {
+        stack.push(currentNode.right);
+      }
+      if (currentNode.left) {
+        stack.push(currentNode.left);
+      }
+      if (callbackFunc) {
+        let callbackResult = callbackFunc(currentNode);
+        result.push(callbackResult);
+      } else {
+        result.push(currentNode.data);
+      }
+    }
+    return result;
+  }
+
+  inorder(callbackFunc) {
+    //implemented recursively
+    const result = [];
+
+    function traverse(node) {
+      if (node) {
+        traverse(node.left);
+        result.push(callbackFunc ? callbackFunc(node) : node.data);
+        traverse(node.right);
+      }
+    }
+    traverse(this.root);
+    return result;
+  }
+
+  postOrder(callbackFunc) {
+    //implemented recursively
+    const result = [];
+
+    function traverse(node) {
+      if (node) {
+        traverse(node.left);
+        traverse(node.right);
+        result.push(callbackFunc ? callbackFunc(node) : node.data);
+      }
+    }
+    traverse(this.root);
+    return result;
+  }
 }
 
 function minValue(root) {
@@ -134,4 +189,7 @@ console.log(testTree.insert(7)); //4 2 6 1 3 5 8 7 9
 prettyPrint(testTree.root);
 console.log(testTree.delete(6)); //4 2 7 1 3 4 8 9
 prettyPrint(testTree.root);
-console.log(testTree.levelOrder(timesOneHundo)); //400 200 700 100 300 500 800 900
+// console.log(testTree.levelOrder(timesOneHundo)); // 400 200 700 100 300 500 800 900
+// console.log(testTree.preorder(timesOneHundo)); // 400 200 100 300 700 500 800 900
+// console.log(testTree.inorder(timesOneHundo)); // 100 200 300 400 500 700 800 900
+// console.log(testTree.postOrder(timesOneHundo)); // 100 300 200 500 900 800 700 400
