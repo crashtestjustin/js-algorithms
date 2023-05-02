@@ -171,6 +171,15 @@ class Tree {
     traverse(this.root);
     return result;
   }
+
+  height(node) {
+    if (node === null || node === undefined) {
+      return -1;
+    }
+    const leftH = this.height(node.left);
+    const rightH = this.height(node.right);
+    return Math.max(leftH, rightH) + 1;
+  }
 }
 
 function minValue(root) {
@@ -213,3 +222,4 @@ prettyPrint(testTree.root);
 // console.log(testTree.preorder(timesOneHundo)); // 400 200 100 300 700 500 800 900
 // console.log(testTree.inorder(timesOneHundo)); // 100 200 300 400 500 700 800 900
 // console.log(testTree.postorder(timesOneHundo)); // 100 300 200 500 900 800 700 400
+console.log(testTree.height(testTree.find(4)));
