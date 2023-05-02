@@ -97,8 +97,8 @@ class Tree {
     return result;
   }
 
+  //implemented iteratively
   preorder(callbackFunc) {
-    //implemented iteratively
     let stack = [this.root];
     let result = [];
     if (!this.root) {
@@ -122,8 +122,8 @@ class Tree {
     return result;
   }
 
+  //implemented recursively
   inorder(callbackFunc) {
-    //implemented recursively
     const result = [];
 
     function traverse(node) {
@@ -137,8 +137,28 @@ class Tree {
     return result;
   }
 
-  postOrder(callbackFunc) {
-    //implemented recursively
+  //implemented iteratively
+  inorderTwo(callbackFunc) {
+    const stack = [];
+    const result = [];
+    let current = this.root;
+
+    while (current || stack.length > 0) {
+      while (current) {
+        stack.push(current);
+        current = current.left;
+      }
+
+      current = stack.pop();
+      result.push(callbackFunc ? callbackFunc(current) : current.data);
+      current = current.right;
+    }
+
+    return result;
+  }
+
+  //implemented recursively
+  postorder(callbackFunc) {
     const result = [];
 
     function traverse(node) {
@@ -162,9 +182,9 @@ function minValue(root) {
   return minV;
 }
 
-function timesOneHundo(input) {
-  return input.data * 100;
-}
+// function timesOneHundo(input) {
+//   return input.data * 100;
+// }
 
 //TEST RUN
 
@@ -192,4 +212,4 @@ prettyPrint(testTree.root);
 // console.log(testTree.levelOrder(timesOneHundo)); // 400 200 700 100 300 500 800 900
 // console.log(testTree.preorder(timesOneHundo)); // 400 200 100 300 700 500 800 900
 // console.log(testTree.inorder(timesOneHundo)); // 100 200 300 400 500 700 800 900
-// console.log(testTree.postOrder(timesOneHundo)); // 100 300 200 500 900 800 700 400
+// console.log(testTree.postorder(timesOneHundo)); // 100 300 200 500 900 800 700 400
