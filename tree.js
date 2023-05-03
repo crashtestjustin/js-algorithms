@@ -269,6 +269,8 @@ function timesOneHundo(input) {
 let testArray = [2, 9, 8, 5, 4, 4, 3, 6, 1];
 let testTree = new Tree(testArray);
 
+//pretty print function for visualization
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
