@@ -213,6 +213,35 @@ class Tree {
       return this.depth(node, currentNode.right, counter + 1);
     }
   }
+
+  isBalanced(currentNode = this.root) {
+    if (currentNode === null) {
+      return true;
+    }
+
+    const leftHeight = this.getHeight(currentNode.left);
+    const rightHeight = this.getHeight(currentNode.right);
+    const heightDiff = Math.abs(leftHeight - rightHeight);
+
+    if (heightDiff > 1) {
+      return false;
+    }
+
+    return (
+      this.isBalanced(currentNode.left) && this.isBalanced(currentNode.right)
+    );
+  }
+
+  getHeight(currentNode) {
+    if (currentNode === null) {
+      return 0;
+    }
+
+    const leftHeight = this.getHeight(currentNode.left);
+    const rightHeight = this.getHeight(currentNode.right);
+
+    return 1 + Math.max(leftHeight, rightHeight);
+  }
 }
 
 function minValue(root) {
@@ -257,3 +286,4 @@ prettyPrint(testTree.root);
 // console.log(testTree.postorder(timesOneHundo)); // 100 300 200 500 900 800 700 400
 console.log(testTree.height(testTree.find(4)));
 console.log(testTree.depth(testTree.find(9)));
+console.log(testTree.isBalanced());
