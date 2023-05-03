@@ -123,7 +123,7 @@ class Tree {
   }
 
   //implemented recursively
-  inorder(callbackFunc) {
+  inorderRec(callbackFunc) {
     const result = [];
 
     function traverse(node) {
@@ -138,7 +138,7 @@ class Tree {
   }
 
   //implemented iteratively
-  inorderTwo(callbackFunc) {
+  inorder(callbackFunc) {
     const stack = [];
     const result = [];
     let current = this.root;
@@ -180,6 +180,39 @@ class Tree {
     const rightH = this.height(node.right);
     return Math.max(leftH, rightH) + 1;
   }
+
+  //implemented iteratively
+  depth(node) {
+    if (node === null || node === undefined) {
+      return -1;
+    }
+    let currentNode = this.root;
+    let counter = 0;
+    while (currentNode.data !== node.data) {
+      if (currentNode.data > node.data) {
+        currentNode = currentNode.left;
+      } else {
+        currentNode = currentNode.right;
+      }
+      counter++;
+    }
+    return counter;
+  }
+
+  //implemented recursively
+  depthRec(node, currentNode = this.root, counter = 0) {
+    if (node === null || node === undefined) {
+      return -1;
+    }
+    if (currentNode.data === node.data) {
+      return counter;
+    }
+    if (currentNode.data > node.data) {
+      return this.depth(node, currentNode.left, counter + 1);
+    } else {
+      return this.depth(node, currentNode.right, counter + 1);
+    }
+  }
 }
 
 function minValue(root) {
@@ -191,9 +224,9 @@ function minValue(root) {
   return minV;
 }
 
-// function timesOneHundo(input) {
-//   return input.data * 100;
-// }
+function timesOneHundo(input) {
+  return input.data * 100;
+}
 
 //TEST RUN
 
@@ -220,6 +253,7 @@ console.log(testTree.delete(6)); //4 2 7 1 3 4 8 9
 prettyPrint(testTree.root);
 // console.log(testTree.levelOrder(timesOneHundo)); // 400 200 700 100 300 500 800 900
 // console.log(testTree.preorder(timesOneHundo)); // 400 200 100 300 700 500 800 900
-// console.log(testTree.inorder(timesOneHundo)); // 100 200 300 400 500 700 800 900
+// console.log(testTree.inorderRec(timesOneHundo)); // 100 200 300 400 500 700 800 900
 // console.log(testTree.postorder(timesOneHundo)); // 100 300 200 500 900 800 700 400
 console.log(testTree.height(testTree.find(4)));
+console.log(testTree.depth(testTree.find(9)));
