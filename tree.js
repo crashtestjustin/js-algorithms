@@ -244,6 +244,9 @@ class Tree {
   }
 
   rebalance() {
+    if (this.root === null) {
+      return true;
+    }
     let array = this.preorder();
     const sorted = [...new Set(array)].sort((a, b) => a - b);
     this.root = this.buildTree(sorted, 0, sorted.length);
