@@ -283,19 +283,28 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 prettyPrint(testTree.root);
-console.log(testTree.insert(7)); //4 2 6 1 3 5 8 7 9
+console.log(testTree.isBalanced()); //true
+console.log(testTree.levelOrder(timesOneHundo)); // 400 200 600 100 300 500 800 900
+console.log(testTree.preorder(timesOneHundo)); // 400 200 100 300 600 500 800 900
+console.log(testTree.inorderRec(timesOneHundo)); // 100 200 300 400 500 600 800 900
+console.log(testTree.postorder(timesOneHundo)); // 100 300 200 500 900 800 600 400
+
 console.log(testTree.insert(11));
 console.log(testTree.insert(12));
 prettyPrint(testTree.root);
-console.log(testTree.delete(6)); //4 2 7 1 3 4 8 9
+console.log(testTree.isBalanced()); //false
+console.log(testTree.rebalance());
+console.log(testTree.isBalanced()); //true
+console.log(testTree.levelOrder()); // 6 3 11 1 4 8 12 2 5 9
+console.log(testTree.preorder()); // 6 3 1 2 4 5 11 8 9 12
+console.log(testTree.inorderRec()); // 1 2 3 4 5 6 8 9 11 12
+console.log(testTree.postorder()); // 2 1 5 4 3 9 8 12 11 6
 prettyPrint(testTree.root);
-// console.log(testTree.levelOrder(timesOneHundo)); // 400 200 700 100 300 500 800 900
-// console.log(testTree.preorder(timesOneHundo)); // 400 200 100 300 700 500 800 900
-// console.log(testTree.inorderRec(timesOneHundo)); // 100 200 300 400 500 700 800 900
-// console.log(testTree.postorder(timesOneHundo)); // 100 300 200 500 900 800 700 400
+
 console.log(testTree.height(testTree.find(4)));
 console.log(testTree.depth(testTree.find(9)));
-console.log(testTree.isBalanced());
-console.log(testTree.rebalance());
+
+console.log(testTree.delete(11));
+console.log(testTree.isBalanced()); //true
+console.log(testTree.levelOrder()); // 6 3 12 1 4 8 2 5 9
 prettyPrint(testTree.root);
-console.log(testTree.isBalanced());
