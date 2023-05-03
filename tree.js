@@ -242,6 +242,13 @@ class Tree {
 
     return 1 + Math.max(leftHeight, rightHeight);
   }
+
+  rebalance() {
+    let array = this.preorder();
+    const sorted = [...new Set(array)].sort((a, b) => a - b);
+    this.root = this.buildTree(sorted, 0, sorted.length);
+    return this.root;
+  }
 }
 
 function minValue(root) {
@@ -277,6 +284,8 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 prettyPrint(testTree.root);
 console.log(testTree.insert(7)); //4 2 6 1 3 5 8 7 9
+console.log(testTree.insert(11));
+console.log(testTree.insert(12));
 prettyPrint(testTree.root);
 console.log(testTree.delete(6)); //4 2 7 1 3 4 8 9
 prettyPrint(testTree.root);
@@ -286,4 +295,7 @@ prettyPrint(testTree.root);
 // console.log(testTree.postorder(timesOneHundo)); // 100 300 200 500 900 800 700 400
 console.log(testTree.height(testTree.find(4)));
 console.log(testTree.depth(testTree.find(9)));
+console.log(testTree.isBalanced());
+console.log(testTree.rebalance());
+prettyPrint(testTree.root);
 console.log(testTree.isBalanced());
